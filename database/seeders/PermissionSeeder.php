@@ -14,7 +14,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create(['name' => 'managers.*']);
+        Permission::create(['name'  => 'managers.*']);
         Permission::create(['name'  => 'receptionists.*']);
         Permission::create(['name'  => 'clients.*']);
     }

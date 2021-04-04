@@ -28,7 +28,7 @@ class UpdateReceptionistRequest extends FormRequest
         return [
             'name'          => ['min:2'],
             'email'         => ['required' ,'email' ,'unique:users,id,'.$this->receptionist_id],
-            'national_id'   => ['required' ,'digits:4'],
+            'national_id'   => ['required' ,'min:4'],
             'image'         => ['image'],
             'password'      => ["sometimes","nullable","min:6", "confirmed"],
             "manager_id"    => Rule::requiredIf(Auth::user()->hasRole('admin')),

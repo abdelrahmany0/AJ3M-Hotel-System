@@ -88,12 +88,12 @@ class ReceptionistDataTable extends DataTable
             Column::make('id')->title("Receptionist ID"),
             Column::make('user.name')->title("Name"),
             Column::make('user.email')->title("Email"),
-            Column::make('user.national_id')->title("National ID"),
-            Column::make('user.created_at')->title("created_at"),
+            Column::make('user.national_id')->title("National ID")->addClass("w-25"),
+            Column::make('user.created_at')->title("created_at")->addClass("w-25"),
             Column::computed('manager name')
                 ->exportable(true)
                 ->printable(true)
-                ->width(60)
+                ->width(40)
                 ->addClass('text-center')
                 ->addClass("w-25"),
             Column::computed('action')
