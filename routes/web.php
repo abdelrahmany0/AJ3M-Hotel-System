@@ -50,10 +50,15 @@ Route::group(['middleware' => ['logs-out-banned-user', 'forbid-banned-user']], f
 Route::group(['middleware' => ['auth', 'logs-out-banned-user', 'forbid-banned-user']], function () {
 
     Route::prefix("/reservations")->group(function () {
+
         Route::get('/rooms/{room}', [ClientReservationController::class, 'reserve'])->name('clientHome.reserve');
+
         Route::post('/{room}', [ClientReservationController::class, 'store'])->name("clientHome.store");
+
         Route::post('/{room}/payment', [ClientReservationController::class, 'store'])->name("clientHome.pay");
+
         Route::get('/{room}/success', [ClientReservationController::class, 'successReserve'])->name("clientHome.successReserve");
+
     });
 
 
@@ -62,7 +67,7 @@ Route::group(['middleware' => ['auth', 'logs-out-banned-user', 'forbid-banned-us
         Route::put("/{user}", [UserController::class, "update"])->name("users.update");
     });
 
-    Route::prefix("admin")->middleware(["role:admin|manager|receptionists"])->group(function () {
+    Route::prefix("admin")->middleware(["role:admin|manager|receptionist"])->group(function () {
         Route::get("/", function () {
             return view('dashboard_welcome');
         })->name("admin.dashboard");
@@ -105,6 +110,7 @@ Route::group(['middleware' => ['auth', 'logs-out-banned-user', 'forbid-banned-us
         });
 
         Route::prefix("floors")->middleware(["role:admin|manager"])->group(function () {
+
             Route::get('/', [FloorController::class, 'index'])->name('floors.index');
 
             Route::get('/create', [FloorController::class, 'create'])->name('floors.create');

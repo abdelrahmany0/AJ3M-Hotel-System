@@ -241,7 +241,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         @endhasanyrole
                         {{-- CLIENT  --}}
-                        @hasanyrole('admin|manager|receptionists')
+                        @hasanyrole('admin|manager|receptionist')
                         @php($currentRoute = Route::currentRouteName())
                         @php($active = str_starts_with($currentRoute, "client"))
                         <li class="nav-item menu-{{$active? "open": "close"}}">

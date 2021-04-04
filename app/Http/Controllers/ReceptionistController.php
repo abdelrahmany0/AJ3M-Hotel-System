@@ -25,7 +25,7 @@ class ReceptionistController extends Controller
 
     public function store(StoreReceptionistRequest $request){
         $user = User::create($request->validated());
-        $user->assignRole('receptionists');
+        $user->assignRole('receptionist');
         $manager_id = Auth::user()->hasRole('manager') ?  Auth::user()->manager->id : $request->manager_id;
         Receptionist::create(["user_id" => $user->id ,"manager_id" => $manager_id]);
         return redirect()->back()->with(["success" => ["message" => "Receptionist Created Successfully"]]);
