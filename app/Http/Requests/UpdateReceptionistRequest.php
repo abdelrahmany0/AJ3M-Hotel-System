@@ -31,7 +31,7 @@ class UpdateReceptionistRequest extends FormRequest
             'national_id'   => ['required' ,'digits:4'],
             'image'         => ['image'],
             'password'      => ["sometimes","nullable","min:6", "confirmed"],
-            "manager_id"    => Rule::requiredIf(!Auth::user()->hasRole('manager')),
+            "manager_id"    => Rule::requiredIf(Auth::user()->hasRole('admin')),
         ];
     }
 }

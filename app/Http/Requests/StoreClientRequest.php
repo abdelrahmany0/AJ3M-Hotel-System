@@ -26,8 +26,8 @@ class StoreClientRequest extends FormRequest
         return [
             'name'          => ['required'],
             'email'         => ['required', 'unique:users,email'],
-            'gender'        =>['in:female,male'],
-            'avatar_image'  =>['required'],
+            'gender'        => ['in:female,male'],
+            'avatar_image'  => ['required'],
             'country'       => ['required'],
             "mobile"        => ["required"],
             'password'      => ['required','confirmed']

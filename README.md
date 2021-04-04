@@ -1,13 +1,15 @@
 ﻿<p align="center"><img src="public/images/logo/AJ3M%20Logo.png"></p>
 
+<p align="center"><img src="public/images/logo/logo.png"></p>
+
 ## About AJ3M Hotel System
 AJ3M is a Laravel hotel system project for Information Technology Institute (ITI) Alexandria branch. 
 
 ## Introduction
-Managing the hotel system. we can expand the featueres in the system to add any if needed.  
+Manage the hotel system with ease through our friendly interface. We can expand the features in the system to add more if needed.  
 The hotel has basic roles `1.Admin`, `2.Manager`, `3.Receptionist`, `#4.Client`.  
 Each role with higher permissions can control the role below it ,by banning or deleting, or even to update the data.  
-Roles are added easliy through the Admin Dashboard to control the full system.  
+Roles are added easily through the Admin Dashboard to control the full system.  
 Clients can reserve rooms through the main website with easy payment.
 
 ## Installation

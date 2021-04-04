@@ -28,7 +28,7 @@ class StoreFloorRequest extends FormRequest
         return [
             "name"          => ["required" ,"min:3"],
             "number"        => ["required" ,"unique:floors,number" ,"digits:4"],
-            "manager_id"    => Rule::requiredIf(!Auth::user()->hasRole('manager')),
+            "manager_id"    => Rule::requiredIf(Auth::user()->hasRole('admin')),
         ];
     }
 }

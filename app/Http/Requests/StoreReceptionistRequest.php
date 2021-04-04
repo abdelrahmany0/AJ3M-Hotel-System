@@ -31,7 +31,7 @@ class StoreReceptionistRequest extends FormRequest
             "national_id"   => ["required" ,"numeric","digits:4" ,"unique:users,national_id"],
             "password"      => ["required" ,"min:6"  ,"confirmed"],
             "avatar_image"  => ["mimes:jpeg,png"],
-            "manager_id"    => Rule::requiredIf(!Auth::user()->hasRole('manager')),
+            "manager_id"    => Rule::requiredIf(Auth::user()->hasRole('admin')),
         ];
     }
 }

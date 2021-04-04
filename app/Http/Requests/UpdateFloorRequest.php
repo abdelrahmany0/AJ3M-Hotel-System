@@ -28,7 +28,7 @@ class UpdateFloorRequest extends FormRequest
         return [
             "name"          => ["required" , "min:3"],
             "number"        => ["required" , "unique:floors,id,".$this->id ,"exists:floors,number"],
-            "manager_id"    => Rule::requiredIf(!Auth::user()->hasRole('manager')),
+            "manager_id"    => Rule::requiredIf(Auth::user()->hasRole('admin')),
         ];
     }
 }

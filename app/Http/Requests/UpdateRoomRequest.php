@@ -30,7 +30,7 @@ class UpdateRoomRequest extends FormRequest
             "capacity"      => ["required"],
             "price"         => ["required"],
             "floor_id"      => ["required" , "exists:floors,id"],
-            "manager_id"    => Rule::requiredIf(!Auth::user()->hasRole('manager')),
+            "manager_id"    => Rule::requiredIf(Auth::user()->hasRole('admin')),
         ];
     }
 }
