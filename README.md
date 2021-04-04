@@ -1,5 +1,3 @@
-﻿<p align="center"><img src="public/images/logo/AJ3M%20Logo.png"></p>
-
 <p align="center"><img src="public/images/logo/logo.png"></p>
 
 ## About AJ3M Hotel System
