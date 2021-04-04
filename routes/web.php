@@ -124,7 +124,7 @@ Route::group(['middleware' => ['auth', 'logs-out-banned-user', 'forbid-banned-us
             Route::post('/', [FloorController::class, 'store'])->name('floors.store');
 
         });
-
+//test
         Route::prefix("rooms")->middleware(["role:admin|manager"])->group(function () {
 
             Route::get('/', [RoomController::class, 'index'])->name('rooms.index');
