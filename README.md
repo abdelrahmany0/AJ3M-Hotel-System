@@ -18,7 +18,7 @@ For installing AJ3M Hotel system.
 ```git clone https://github.com/bin0mial/AJ3M-hotel-system.git``` 
 2. Run composer install to install third party libraries if you dont have composer you can download it from this link [Composer Installer](https://getcomposer.org/)
 ```composer install``` 
-3. Run npm install to install software package manager you can download it from this link [npm Installer](https://docs.npmjs.com/cli/v7/commands/npm-install)
+3. Run npm install to install software package manager you can download it from this link [npm Installer](https://docs.npmjs.com/cli/v7/commands/npm-install) 
 ```npm install```
 4. Copy the ```.env.example``` and rename to ```.env``` 
 5. Don't forget to create a ```schema``` in your ```database```
