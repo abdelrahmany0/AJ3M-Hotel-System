@@ -23,9 +23,15 @@ class ApprovedClientsDataTable extends DataTable
      */
     public function dataTable($query)
     {
+        if(Auth::user()->hasRole('admin')){
+            return datatables()
+                ->eloquent($query)
+                ->addColumn('receptionist', function ($data){
+                    return $this->getReceptionist($data);
+                });
+        }
         return datatables()
-            ->eloquent($query)
-            ->addColumn('action','approvedclients.action');
+            ->eloquent($query);
     }
 
 
@@ -40,17 +46,14 @@ class ApprovedClientsDataTable extends DataTable
      */
     public function query(Client $model)
     {
-             $is_receptionist = Auth::user()->hasRole('receptionist') ;
-            return $model->newQuery()->with('user')->select('clients.*')->where('approval',true)
-            ->when($is_receptionist,function($query , $is_receptionist ){
-
-                 return $query->where('receptionist_id',Auth::user()->receptionist->id);
-
-            });
-
-      
+        $is_receptionist = Auth::user()->hasRole('receptionist') ;
+        return $model->newQuery()->with('user')->select('clients.*')
+                ->where('approval',"=" ,true)
+                ->when($is_receptionist,function($query){
+                        return $query->where('receptionist_id',Auth::user()->receptionist->id);
+                });
     }
-    
+
 
 
     /**
@@ -61,7 +64,7 @@ class ApprovedClientsDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('users-table')
+                    ->setTableId('client-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -82,19 +85,28 @@ class ApprovedClientsDataTable extends DataTable
      */
     protected function getColumns()
     {
-        
+        if(Auth::user()->hasRole('admin')){
+            return [
+                Column::make('user.name')->title("Name"),
+                Column::make('user.email')->title("Email"),
+                Column::make('mobile')->title("Mobile"),
+                Column::make('country')->title("Country"),
+                Column::make('gender')->title("Gender"),
+                Column::computed('receptionist')
+                    ->exportable(true)
+                    ->printable(true)
+                    ->width(60)
+                    ->addClass('text-center'),
+        ];
+
+        }
+
         return [
-            
             Column::make('user.name')->title("Name"),
             Column::make('user.email')->title("Email"),
             Column::make('mobile')->title("Mobile"),
             Column::make('country')->title("Country"),
             Column::make('gender')->title("Gender"),
-            // Column::computed('action')
-            //     ->exportable(false)
-            //     ->printable(false)
-            //     ->width(60)
-            //     ->addClass('text-center')
         ];
     }
 
@@ -108,9 +120,8 @@ class ApprovedClientsDataTable extends DataTable
         return 'ApprovedClients_' . date('YmdHis');
     }
 
-   
-
-    
-
+    protected function getReceptionist($data){
+        return $data->receptionist->user->name;
+    }
 
 }

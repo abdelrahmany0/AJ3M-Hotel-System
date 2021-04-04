@@ -20,6 +20,7 @@ class ClientDataTable extends DataTable
      */
     public function dataTable($query)
     {
+
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function ($data) {
@@ -36,7 +37,7 @@ class ClientDataTable extends DataTable
     public function query(Client $model)
     {
         return $model->newQuery()->with('user')->select('clients.*')->where('approval',false);
-       
+
     }
 
     /**
@@ -69,7 +70,7 @@ class ClientDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            
+
             Column::make('user.name')->title("Name"),
             Column::make('user.email')->title("Email"),
             Column::make('mobile')->title("Mobile"),
@@ -98,13 +99,12 @@ class ClientDataTable extends DataTable
     protected function getClientActionColumn($data)
     {
         if ($data->receptionist_id == null && $data->approval == false) {
-           
+
             $accept = route("client.accept", [$data->id]);
-            $current_datatable = strtolower(basename(__FILE__, "DataTable.php"));
             return "<div class='d-flex  justify-content-center'>"
                 . "<a class='btn btn-warning' href='$accept'>Accept</a>";
-               
-
         }
     }
+
+
 }
