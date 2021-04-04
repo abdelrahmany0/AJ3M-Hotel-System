@@ -28,15 +28,6 @@
                     </div>
                 </div>
                 @endrole
-
-                <h3 class="mx-auto">Room Info</h3>
-                <x-forms.input name="number" type="number" placeholder="Enter room number..." :value="old('number')" required="true"/>
-                <x-forms.input name="capacity" type="number" placeholder="Enter room capacity..." :value="old('capacity')" required="true"/>
-                <div class="form-group">
-                    <label>Price $ <span class="text-danger">*</span></label>
-                    <input value="{{old('price')}}" type="text" class="form-control" name="price"
-                           placeholder="Enter room price...">
-                </div>
                 <h3>Floor Info</h3>
                 <div class="form-group">
                     <div class="mx-auto">
@@ -44,7 +35,6 @@
                         <select name="floor_id" class="form-control">
                             <option selected disabled value="{{old('floor_id')}}">Select a name:</option>
                             @foreach ($floors as $floor)
-                                <option value="{{ $floor->id }}">{{ $floor->id }}- {{ $floor->name }}</option>
                                 @if(old('floor_id') == $floor->id)
                                     <option selected value="{{ $floor->id }}">{{ $floor->id }}- {{ $floor->name }}</option>
                                 @else
@@ -54,6 +44,16 @@
                         </select>
                     </div>
                 </div>
+
+                <h3 class="mx-auto">Room Info</h3>
+                <x-forms.input name="number" type="number" placeholder="Enter room number..." :value="old('number')" required="true"/>
+                <x-forms.input name="capacity" type="number" placeholder="Enter room capacity..." :value="old('capacity')" required="true"/>
+                <div class="form-group">
+                    <label>Price $ <span class="text-danger">*</span></label>
+                    <input value="{{old('price')}}" type="text" class="form-control" name="price"
+                           placeholder="Enter room price...">
+                </div>
+
 
                 <div class="card w-75 mx-auto">
                     <button type="submit" class="btn btn-primary">Add Room</button>

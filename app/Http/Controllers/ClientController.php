@@ -47,7 +47,7 @@ class ClientController extends Controller
     public function update(UpdateClientApprovalRequest $request,Client $client)
     {
 
-        $receptionist_id = Auth::user()->hasRole('receptionists') ?  Auth::user()->receptionist->id : $request->receptionist_id;
+        $receptionist_id = Auth::user()->hasRole('receptionist') ?  Auth::user()->receptionist->id : $request->receptionist_id;
         //*FOR EMAIL NOTIFICATION*//
 //        if(!$client->approval){
 //            $client->user->notify(new ClientApprovedNotification($client->user));
@@ -56,7 +56,7 @@ class ClientController extends Controller
         $requestData['approval'] = true;
         $requestData['receptionist_id'] = $receptionist_id ;
         $client->update($requestData);
-        return redirect()->route('client.index');
+        return redirect()->route('client.pending');
     }
 
 
