@@ -16,14 +16,21 @@ For installing AJ3M Hotel system.
 ```git clone https://github.com/bin0mial/AJ3M-hotel-system.git``` 
 2. Run composer install to install third party libraries if you dont have composer you can download it from this link [Composer Installer](https://getcomposer.org/)
 ```composer install``` 
-3. Start migrating database files via this command this will install database and seed it with the required data to run the application.
-```php artisan migrate``` 
-4. For starting the application run the following command 
-```php artisan serve```
-5. To create system admin you can do one of the following commands 
-```php artisan db:seed``` 
-or 
-```php artisan create:admin --email:admin@example.com --password=password```
+3. Run npm install to install software package manager you can download it from this link [npm Installer](https://docs.npmjs.com/cli/v7/commands/npm-install)
+```npm install```
+4. Copy the ```.env.example``` and rename to ```.env``` 
+5. Don't forget to create a ```schema``` in your ```database```
+6. Set ```DB_DATABASE``` in your ```.env file``` as your ```schema``` name in the ```database```
+7. Start migrating database files via this command this will install database and seed it with the required data to run the application. 
+   ```php artisan migrate```
+8. To create system admin you can do one of the following commands
+   ```php artisan db:seed```
+   or
+   ```php artisan create:admin --email:admin@example.com --password=password```
+9. Generate  the ```APP_KEY``` in ```.env``` via ```php artisan key:generate```
+10. For starting the application run the following command 
+```php artisan serve``` **and your good to go :)** 
+
 
 ## Project Depedencies
 The project need the following dependences with by default get installed with running `composer install`
